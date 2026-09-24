@@ -128,7 +128,7 @@ export const App: React.FC = () => {
           <div className="nav-badges">
             <span className="nav-pill">
               <Sparkles size={13} />
-              <span>Structured AI (Non-Chat)</span>
+              <span>Smart Revision</span>
             </span>
             <span className="nav-pill">
               <BookMarked size={13} />
@@ -184,14 +184,14 @@ export const App: React.FC = () => {
         </div>
       </main>
 
-      {/* Simple, informative footer */}
+      {/* Clean product footer */}
       <footer className="footer">
         <div className="footer-container">
           <p>
-            FlashIQ &bull; Frontend Internship Assignment &bull; Built with React, Vite, Node Proxy &amp; Google Gemini API
+            FlashIQ &bull; Smart Active Recall &amp; Concept Flashcards
           </p>
           <p className="footer-subtext">
-            Strict JSON validation &bull; Race condition prevention &bull; Defensive error handling
+            Designed for focused learning &bull; Open source on <a href="https://github.com/Nikhil166-tech/FlashIQ" target="_blank" rel="noreferrer" className="footer-link">GitHub</a>
           </p>
         </div>
       </footer>

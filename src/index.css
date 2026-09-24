@@ -1390,6 +1390,17 @@ kbd {
   color: var(--text-dim);
 }
 
+.footer-link {
+  color: var(--primary-600);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 500;
+}
+
+.footer-link:hover {
+  color: var(--primary-700);
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .navbar-container {
