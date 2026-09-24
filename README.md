@@ -54,7 +54,7 @@
 
 ### 1. Clone & Install
 ```bash
-git clone https://github.com/your-username/FlashIQ.git
+git clone https://github.com/Nikhil166-tech/FlashIQ.git
 cd FlashIQ
 npm install
 ```

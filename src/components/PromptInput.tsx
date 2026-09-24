@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Sparkles, BookOpen, AlertOctagon, HelpCircle } from 'lucide-react';
+import { Sparkles, BookOpen, ArrowRight, Zap, Lightbulb } from 'lucide-react';
 import type { FailureScenario } from '../types/result';
 
 interface PromptInputProps {
-  onSubmit: (prompt: string, scenario: FailureScenario) => void;
+  onSubmit: (prompt: string, scenario?: FailureScenario) => void;
   isLoading: boolean;
   initialPrompt?: string;
 }
@@ -29,13 +29,12 @@ export const PromptInput: React.FC<PromptInputProps> = ({
   initialPrompt = ''
 }) => {
   const [prompt, setPrompt] = useState(initialPrompt);
-  const [scenario, setScenario] = useState<FailureScenario>('none');
-  const [showTesterGuide, setShowTesterGuide] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!prompt.trim() || isLoading) return;
-    onSubmit(prompt.trim(), scenario);
+    // Keep exact signature compatibility, default scenario to 'none'
+    onSubmit(prompt.trim(), 'none');
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -46,102 +45,119 @@ export const PromptInput: React.FC<PromptInputProps> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="card prompt-card">
-      <div className="prompt-header">
-        <div>
-          <h2 className="prompt-title">What would you like to study?</h2>
-          <p className="prompt-subtitle">
-            Paste raw study notes, lecture excerpts, or a topic description below.
-          </p>
+    <div className="prompt-section">
+      {/* Recruiter-friendly Hero Section */}
+      <div className="study-hero">
+        <div className="hero-pill">
+          <Zap size={14} className="hero-pill-icon" />
+          <span>Active Recall &bull; Spaced Repetition Engine</span>
+        </div>
+        <h1 className="hero-title">
+          Master any subject faster with <span className="highlight-gradient">AI Flashcards</span>
+        </h1>
+        <p className="hero-subtitle">
+          Paste your lecture notes, textbook chapters, or topic notes below. FlashIQ transforms
+          unstructured study material into 3D interactive flashcards and an adaptive practice quiz.
+        </p>
+      </div>
+
+      {/* Main Study Input Card */}
+      <form onSubmit={handleSubmit} className="card prompt-card">
+        <div className="prompt-header">
+          <div>
+            <h2 className="prompt-title">Study Material / Notes</h2>
+            <p className="prompt-subtitle">
+              Input the raw content you want to study. The AI will extract core concepts and key takeaways.
+            </p>
+          </div>
         </div>
 
-        {/* Failure Scenario Simulator Trigger */}
-        <div className="failure-tester-wrapper">
-          <label htmlFor="scenario-select" className="failure-label">
-            <AlertOctagon size={14} className="tester-icon" />
-            <span>Test Edge Case:</span>
-          </label>
-          <select
-            id="scenario-select"
-            className="failure-select"
-            value={scenario}
-            onChange={(e) => setScenario(e.target.value as FailureScenario)}
-            disabled={isLoading}
-          >
-            <option value="none">Normal (Valid AI Generation)</option>
-            <option value="malformed_json">Simulate: Malformed JSON</option>
-            <option value="wrong_shape">Simulate: Wrong Schema / Missing Fields</option>
-            <option value="empty_response">Simulate: Empty AI Response</option>
-            <option value="slow_response">Simulate: Slow Response (Timeout)</option>
-          </select>
+        {/* Quick Topic Starter Chips */}
+        <div className="presets-wrapper">
+          <span className="presets-label">
+            <BookOpen size={14} /> Quick examples:
+          </span>
+          <div className="preset-buttons">
+            {PRESETS.map((preset) => (
+              <button
+                key={preset.label}
+                type="button"
+                className="preset-chip"
+                onClick={() => setPrompt(preset.text)}
+                disabled={isLoading}
+              >
+                {preset.label}
+              </button>
+            ))}
+          </div>
+        </div>
 
+        {/* Free-Form Textarea */}
+        <div className="textarea-container">
+          <textarea
+            className="prompt-textarea"
+            rows={7}
+            placeholder="Paste your study notes, textbook paragraph, or a topic outline here..."
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
+            onKeyDown={handleKeyDown}
+            disabled={isLoading}
+            required
+          />
+          <div className="textarea-footer">
+            <span className="char-count">{prompt.length} characters</span>
+            <span className="hint-shortcut">
+              Tip: Press <kbd>Ctrl</kbd> + <kbd>Enter</kbd> to generate instantly
+            </span>
+          </div>
+        </div>
+
+        {/* Action Button */}
+        <div className="prompt-actions">
           <button
-            type="button"
-            className="info-icon-btn"
-            onClick={() => setShowTesterGuide(!showTesterGuide)}
-            title="What is this?"
+            type="submit"
+            className="btn btn-primary submit-btn"
+            disabled={!prompt.trim() || isLoading}
           >
-            <HelpCircle size={14} />
+            <Sparkles size={17} />
+            <span>{isLoading ? 'Synthesizing Materials...' : 'Generate Study Set'}</span>
+            <ArrowRight size={16} />
           </button>
         </div>
-      </div>
+      </form>
 
-      {showTesterGuide && (
-        <div className="tester-guide-callout">
-          <strong>Reviewer / Interviewer Note:</strong> Section 7 of the assignment evaluates handling
-          broken AI outputs. Use this selector to verify that malformed JSON, schema mismatches, empty
-          outputs, or timeouts gracefully route to designated error boundaries without UI crashes.
+      {/* Value Badges Footer */}
+      <div className="study-features-grid">
+        <div className="feature-item">
+          <div className="feature-icon-wrapper">
+            <Sparkles size={18} />
+          </div>
+          <div>
+            <h4 className="feature-heading">3D Active Recall</h4>
+            <p className="feature-desc">Flip cards with keyboard navigation to strengthen neural recall pathways.</p>
+          </div>
         </div>
-      )}
 
-      {/* Quick Presets */}
-      <div className="presets-wrapper">
-        <span className="presets-label">
-          <BookOpen size={13} /> Try a sample:
-        </span>
-        <div className="preset-buttons">
-          {PRESETS.map((preset) => (
-            <button
-              key={preset.label}
-              type="button"
-              className="preset-chip"
-              onClick={() => setPrompt(preset.text)}
-              disabled={isLoading}
-            >
-              {preset.label}
-            </button>
-          ))}
+        <div className="feature-item">
+          <div className="feature-icon-wrapper">
+            <Lightbulb size={18} />
+          </div>
+          <div>
+            <h4 className="feature-heading">Interactive Quizzing</h4>
+            <p className="feature-desc">Instant conceptual feedback with detailed explanations on every question.</p>
+          </div>
         </div>
-      </div>
 
-      {/* Main Free-Form Input */}
-      <div className="textarea-container">
-        <textarea
-          className="prompt-textarea"
-          rows={6}
-          placeholder="Paste your study notes, textbook paragraph, or a topic here..."
-          value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
-          onKeyDown={handleKeyDown}
-          disabled={isLoading}
-          required
-        />
-        <div className="textarea-footer">
-          <span className="char-count">{prompt.length} characters</span>
-          <span className="hint-shortcut">Press <kbd>Ctrl</kbd> + <kbd>Enter</kbd> to generate</span>
+        <div className="feature-item">
+          <div className="feature-icon-wrapper">
+            <Zap size={18} />
+          </div>
+          <div>
+            <h4 className="feature-heading">Re-test Wrong Answers</h4>
+            <p className="feature-desc">Target weak spots directly by re-testing only the concepts you missed.</p>
+          </div>
         </div>
       </div>
-
-      <div className="prompt-actions">
-        <button
-          type="submit"
-          className="btn btn-primary submit-btn"
-          disabled={!prompt.trim() || isLoading}
-        >
-          <Sparkles size={16} />
-          <span>{isLoading ? 'Generating Deck...' : 'Generate Flashcards & Quiz'}</span>
-        </button>
-      </div>
-    </form>
+    </div>
   );
 };

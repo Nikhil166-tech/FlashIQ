@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Layers, CheckSquare, ArrowLeft, BookOpen, AlertCircle } from 'lucide-react';
+import { Layers, CheckSquare, ArrowLeft, BookOpen, AlertCircle, Sparkles, Brain } from 'lucide-react';
 import type { StudySet } from '../types/result';
 import { FlashcardDeck } from './FlashcardDeck';
 import { QuizMode } from './QuizMode';
@@ -20,25 +20,50 @@ export const ResultView: React.FC<ResultViewProps> = ({ studySet, isMock, onRese
         <div className="mock-banner" role="status">
           <AlertCircle size={15} />
           <span>
-            <strong>Demo Fallback Active:</strong> Running with structured sample dataset. Set <code>GEMINI_API_KEY</code> in <code>.env</code> for live Gemini generation.
+            <strong>Demo Dataset Active:</strong> Running with contextual sample data. Set <code>GEMINI_API_KEY</code> in <code>.env</code> for live Gemini generation.
           </span>
         </div>
       )}
 
-      {/* Header bar */}
+      {/* Recruiter-friendly Study Deck Header */}
       <div className="result-header card">
         <div className="result-header-main">
-          <div className="topic-badge">
-            <BookOpen size={14} />
-            <span>Study Topic</span>
+          <div className="topic-meta-bar">
+            <div className="topic-badge">
+              <BookOpen size={13} />
+              <span>Study Deck</span>
+            </div>
+            <div className="session-status-badge">
+              <Sparkles size={12} />
+              <span>AI Synthesized Set</span>
+            </div>
           </div>
+
           <h2 className="result-topic-title">{studySet.topicTitle}</h2>
           <p className="result-summary">{studySet.summary}</p>
+
+          {/* Quick Metrics Bar */}
+          <div className="deck-quick-metrics">
+            <div className="metric-chip">
+              <Layers size={14} className="metric-icon" />
+              <span><strong>{studySet.cards.length}</strong> Flashcards</span>
+            </div>
+            {studySet.quiz && (
+              <div className="metric-chip">
+                <Brain size={14} className="metric-icon" />
+                <span><strong>{studySet.quiz.length}</strong> Quiz Questions</span>
+              </div>
+            )}
+            <div className="metric-chip">
+              <span className="metric-dot" />
+              <span>Active Study Session</span>
+            </div>
+          </div>
         </div>
 
         <button type="button" onClick={onReset} className="btn btn-secondary reset-topic-btn">
-          <ArrowLeft size={16} />
-          <span>New Study Notes</span>
+          <ArrowLeft size={15} />
+          <span>New Notes</span>
         </button>
       </div>
 

@@ -247,6 +247,62 @@ kbd {
   background: #b45309;
 }
 
+/* Recruiter Study Hero */
+.prompt-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.study-hero {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.5rem 0 0.5rem;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--primary-50);
+  border: 1px solid var(--primary-100);
+  color: var(--primary-700);
+  font-size: 0.775rem;
+  font-weight: 700;
+  padding: 0.3rem 0.85rem;
+  border-radius: 9999px;
+  letter-spacing: 0.02em;
+}
+
+.hero-pill-icon {
+  color: var(--primary-600);
+}
+
+.hero-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-main);
+  line-height: 1.2;
+  max-width: 680px;
+}
+
+.highlight-gradient {
+  background: linear-gradient(135deg, var(--primary-600), #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  line-height: 1.6;
+}
+
 /* Prompt Card */
 .prompt-card {
   display: flex;
@@ -259,7 +315,6 @@ kbd {
   justify-content: space-between;
   align-items: flex-start;
   gap: 1rem;
-  flex-wrap: wrap;
 }
 
 .prompt-title {
@@ -273,62 +328,6 @@ kbd {
   font-size: 0.875rem;
   color: var(--text-muted);
   margin-top: 0.25rem;
-}
-
-.failure-tester-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: var(--bg-subtle);
-  padding: 0.35rem 0.65rem;
-  border-radius: var(--radius-sm);
-  border: 1px dashed var(--border-light);
-}
-
-.failure-label {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  cursor: pointer;
-}
-
-.tester-icon {
-  color: var(--warning-600);
-}
-
-.failure-select {
-  font-size: 0.75rem;
-  font-family: inherit;
-  font-weight: 600;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  border: 1px solid var(--border-light);
-  background: var(--bg-surface);
-  color: var(--text-main);
-  outline: none;
-}
-
-.info-icon-btn {
-  color: var(--text-dim);
-  display: flex;
-  align-items: center;
-}
-
-.info-icon-btn:hover {
-  color: var(--text-main);
-}
-
-.tester-guide-callout {
-  background: var(--warning-50);
-  border: 1px solid var(--warning-100);
-  border-radius: var(--radius-sm);
-  padding: 0.75rem 1rem;
-  font-size: 0.8rem;
-  color: var(--warning-600);
-  line-height: 1.45;
 }
 
 .presets-wrapper {
@@ -359,7 +358,7 @@ kbd {
   color: var(--primary-700);
   background: var(--primary-50);
   border: 1px solid var(--primary-100);
-  padding: 0.3rem 0.65rem;
+  padding: 0.35rem 0.75rem;
   border-radius: 9999px;
   transition: all 0.15s ease;
 }
@@ -367,6 +366,7 @@ kbd {
 .preset-chip:hover {
   background: var(--primary-100);
   border-color: var(--primary-500);
+  transform: translateY(-1px);
 }
 
 .textarea-container {
@@ -380,13 +380,13 @@ kbd {
   font-family: inherit;
   font-size: 0.95rem;
   line-height: 1.6;
-  padding: 1rem;
-  border: 1px solid var(--border-light);
+  padding: 1.1rem;
+  border: 1.5px solid var(--border-light);
   border-radius: var(--radius-md);
   background: var(--bg-surface);
   color: var(--text-main);
   resize: vertical;
-  min-height: 140px;
+  min-height: 150px;
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -410,8 +410,51 @@ kbd {
 }
 
 .submit-btn {
-  padding: 0.85rem 1.75rem;
-  font-size: 1rem;
+  padding: 0.85rem 1.85rem;
+  font-size: 0.975rem;
+}
+
+/* Features Grid */
+.study-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.feature-item {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.1rem;
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.feature-icon-wrapper {
+  background: var(--primary-50);
+  color: var(--primary-600);
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.feature-heading {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.feature-desc {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+  margin-top: 0.2rem;
 }
 
 /* Loading State Card */
@@ -632,6 +675,13 @@ kbd {
   flex: 1;
 }
 
+.topic-meta-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.4rem;
+}
+
 .topic-badge {
   display: inline-flex;
   align-items: center;
@@ -641,11 +691,22 @@ kbd {
   color: var(--primary-600);
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  margin-bottom: 0.35rem;
+}
+
+.session-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--success-600);
+  background: var(--success-50);
+  padding: 0.15rem 0.5rem;
+  border-radius: 9999px;
 }
 
 .result-topic-title {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--text-main);
@@ -657,6 +718,36 @@ kbd {
   color: var(--text-muted);
   margin-top: 0.5rem;
   line-height: 1.55;
+}
+
+.deck-quick-metrics {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.metric-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  background: var(--bg-subtle);
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-sm);
+}
+
+.metric-icon {
+  color: var(--primary-600);
+}
+
+.metric-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--success-600);
 }
 
 .reset-topic-btn {
@@ -1309,6 +1400,15 @@ kbd {
   }
   .main-content {
     padding: 1.5rem 1rem;
+  }
+  .study-hero {
+    padding: 0.25rem 0;
+  }
+  .hero-title {
+    font-size: 1.65rem;
+  }
+  .study-features-grid {
+    grid-template-columns: 1fr;
   }
   .prompt-header {
     flex-direction: column;

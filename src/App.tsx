@@ -135,7 +135,7 @@ export const App: React.FC = () => {
               <span>Flashcards & Quiz</span>
             </span>
             <a
-              href="https://github.com"
+              href="https://github.com/Nikhil166-tech/FlashIQ"
               target="_blank"
               rel="noreferrer"
               className="nav-link-git"
