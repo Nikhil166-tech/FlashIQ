@@ -51,7 +51,7 @@ Generate between 5 to 8 flashcards and 3 to 5 quiz questions. Ensure the JSON is
  */
 function getFallbackStudySet(prompt: string) {
   const p = prompt.toLowerCase();
-  
+
   if (p.includes('react') || p.includes('hook') || p.includes('component')) {
     return {
       topicTitle: "React Hooks & Component Lifecycle",
@@ -278,8 +278,8 @@ app.post('/api/generate', async (req, res) => {
   try {
     const fullUserPrompt = `${SYSTEM_PROMPT}\n\nStudy Notes / User Input:\n${prompt}`;
 
-    // Call Google Gemini API (gemini-1.5-flash)
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    // Call Google Gemini API (gemini-2.5-flash)
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${apiKey}`;
 
     const response = await fetch(geminiUrl, {
       method: 'POST',
