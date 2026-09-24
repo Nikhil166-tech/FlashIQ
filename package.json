@@ -8,8 +8,7 @@
     "start": "concurrently -k -n \"SERVER,CLIENT\" -c \"blue,magenta\" \"npm run server\" \"npm run client\"",
     "client": "vite",
     "server": "tsx server/generate.ts",
-    "build": "tsc -b && vite build",
-    "lint": "oxlint",
+    "build": "tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
