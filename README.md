@@ -82,7 +82,7 @@ This runs both the backend proxy (`localhost:3001`) and Vite frontend (`localhos
 
 ## 🧪 Testing Failure Modes & Resilience (Reviewer Guide)
 
-To make it easy for evaluators to test **Section 7: Handling bad AI output**, FlashIQ includes an **"Edge Case Simulator"** in the input header:
+To satisfy and demonstrate **Section 7: Handling bad AI output**, FlashIQ implements defensive parsing and structural validation before any AI payload touches React state:
 
 | Test Scenario | How FlashIQ Handles It | Visible UI State |
 | :--- | :--- | :--- |
