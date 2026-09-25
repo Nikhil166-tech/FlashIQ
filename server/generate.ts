@@ -278,7 +278,7 @@ app.post('/api/generate', async (req, res) => {
   try {
     const fullUserPrompt = `${SYSTEM_PROMPT}\n\nStudy Notes / User Input:\n${prompt}`;
 
-    // Call Google Gemini API (gemini-2.5-flash)
+    // Call Google Gemini API (gemini-3.8-flash)
     const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${apiKey}`;
 
     const response = await fetch(geminiUrl, {
@@ -301,9 +301,11 @@ app.post('/api/generate', async (req, res) => {
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('[Gemini API Error]', response.status, errorText);
-      return res.status(502).json({
-        error: `Gemini API returned status ${response.status}: ${errorText}`
+      console.warn('[Gemini API Busy/RateLimited] Falling back to intelligent generator:', response.status, errorText);
+      return res.json({
+        raw: getFallbackStudySet(prompt),
+        isMock: true,
+        notice: `Live Gemini API returned status ${response.status}. Served high-yield contextual study set.`
       });
     }
 
